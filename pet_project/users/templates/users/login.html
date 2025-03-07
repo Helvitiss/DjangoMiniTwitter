@@ -1,17 +1,20 @@
 {% extends 'mainapp/base.html' %}
+{% load widget_tweaks %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Войти</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Войти</button>
-    </form>
+    <div class="container mt-4">
+        <h2>Войти</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% render_field form.username class="form-control" placeholder="username" type="text" %}
 
-    <p class="mt-3">
-        Еще нет аккаунта?
-        <a href="{% url 'register' %}" class="register-button">Зарегистрироваться</a>
-    </p>
-</div>
+            {{ form.password }}
+            <button class="reg_btn" type="submit">Войти</button>
+        </form>
+
+        <p class="mt-3">
+            Еще нет аккаунта?
+            <a href="{% url 'register' %}" class="register-button">Зарегистрироваться</a>
+        </p>
+    </div>
 {% endblock %}

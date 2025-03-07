@@ -12,11 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from pathlib import Path
 
-from django.conf.global_settings import STATICFILES_DIRS
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -29,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,7 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainapp',
-    'users'
+    'users',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -73,8 +70,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pet_project.wsgi.application'
 
-
-    # Database
+# Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
@@ -84,13 +80,12 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '2213',
         'HOST': 'localhost',  # Или IP сервера
-        'PORT': '3306',       # Стандартный порт MySQL
+        'PORT': '3306',  # Стандартный порт MySQL
         'OPTIONS': {
             'charset': 'utf8mb4',
         },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -110,10 +105,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#auth model
+# auth model
 AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = "/users/login/"
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -126,20 +120,15 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
 
-
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

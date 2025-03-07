@@ -7,9 +7,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["content"]  # Указываем только поле контента
-        widgets = {
-            "content": forms.Textarea(attrs={"placeholder": "Что нового?", "class": "post-input", "rows": 3}),
-        }
+
 
 
 class CommentForm(forms.ModelForm):
