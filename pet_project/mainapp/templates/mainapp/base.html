@@ -10,6 +10,17 @@
 <!-- Шапка -->
 <header>
     <h1>Mini X</h1>
+    <nav>
+        <ul class="nav-bar">
+            <li><a href="{% url 'home' %}">🏠Домой</a></li>
+            <li><a href="{% url 'search' %}">🔍Поиск</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' user.username %}">👤Профиль</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">👤Профиль</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     <div class="auth-buttons">
         {% if not user.is_authenticated %}
             <a href="{% url 'login' %}">
@@ -29,18 +40,8 @@
 
 
 <aside class="sidebar">
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">🏠Домой</a></li>
-                <li>🔍Поиск</li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile' user.username %}">👤Профиль</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">👤Профиль</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </aside>
+
+</aside>
 
 
 <div class="wrapper">

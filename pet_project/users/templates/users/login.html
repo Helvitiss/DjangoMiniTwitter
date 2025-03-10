@@ -2,13 +2,16 @@
 {% load widget_tweaks %}
 
 {% block content %}
-    <div class="container mt-4">
+    <div class="container-login">
         <h2>Войти</h2>
-        <form method="post">
+        <form class="login-form" method="post">
             {% csrf_token %}
+{#                {{ form.as_p }}#}
             {% render_field form.username class="form-control" placeholder="username" type="text" %}
-
-            {{ form.password }}
+            {% render_field form.password class="form-control" placeholder="password" type="password" %}
+            {% if form.non_field_errors %}
+            <div class="form-errors">{{ form.non_field_errors }}</div>
+            {% endif %}
             <button class="reg_btn" type="submit">Войти</button>
         </form>
 

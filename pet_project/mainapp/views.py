@@ -1,14 +1,16 @@
+from django.contrib.auth import get_user_model
 from django.http import JsonResponse
-from django.urls import reverse_lazy, reverse
-from django.views import View
-from django.views.generic import TemplateView, CreateView, ListView, FormView, DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import  reverse
+from django.views.generic import TemplateView, FormView, DetailView
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 
 
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, SearchForm
 from .models import Post, Comment
+
+User = get_user_model()
+
 
 
 class Index(TemplateView):
@@ -72,3 +74,22 @@ class CommentView(DetailView, FormView):
         form.instance.author = self.request.user
         form.save()
         return redirect(self.get_success_url())  # Перенаправляем, предотвращая дублирование
+
+
+
+def search(request):
+    form = SearchForm({})
+    query = request.GET.get("query", "")
+    results_posts = []
+    results_users = []
+
+    if query:
+        results_posts = Post.objects.filter(content__icontains=query)  # Поиск по содержимому постов
+        results_users = User.objects.filter(username__icontains=query)  # Поиск по пользователям
+    print(request.GET)
+    return render(request, "mainapp/search_results.html", {
+        "form": form,
+        "query": query,
+        "results_posts": results_posts,
+        "results_users": results_users
+    })
