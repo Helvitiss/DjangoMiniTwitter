@@ -3,4 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="Python 3.13 (django_pet)" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (first_django_pet_project)" project-jdk-type="Python SDK" />
 </project>
